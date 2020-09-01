@@ -1,20 +1,29 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import Home from './components/Home';
-import About from './components/About';
-import Shop from './components/Shop';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
+import NoMatch from "./pages/NoMatch";
+import Nav from "./components/Nav";
+import { StoreProvider } from "./utils/GlobalState";
+import FavoritesList from "./pages/FavoritesList";
 
 function App() {
   return (
-      <main>
+    <Router>
+      <div>
+        <StoreProvider>
+          <Nav />
           <Switch>
-              <Route path="/" component={Home} exact />
-              <Route path="/about" component={About} />
-              <Route path="/shop" component={Shop} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/favorites" component={FavoritesList} />
+            <Route exact path="/posts/:id" component={Detail} />
+            <Route component={NoMatch} />
           </Switch>
-      </main>
-  )
+        </StoreProvider>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
