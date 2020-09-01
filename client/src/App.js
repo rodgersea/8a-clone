@@ -1,29 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Books";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Home from './components/Home';
+import About from './components/About';
+import Shop from './components/Shop';
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path={["/", "/books"]}>
-            <Books />
-          </Route>
-          <Route exact path="/books/:id">
-            <Detail />
-          </Route>
-          <Route>
-            <NoMatch />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+      <main>
+          <Switch>
+              <Route path="/" component={Home} exact />
+              <Route path="/about" component={About} />
+              <Route path="/shop" component={Shop} />
+          </Switch>
+      </main>
+  )
 }
 
 export default App;
